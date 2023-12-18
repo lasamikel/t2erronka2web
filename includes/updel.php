@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL ^ E_WARNING); 
 if($_SESSION['username'] != "admin@bdweb"){
   header("Location: ".$_SERVER['PHP_SELF']);
 }
@@ -18,8 +19,8 @@ if(isset($_GET['pic_id'])){
     $fileQuery->execute();
 
     // Vincular el resultado a una variable
-    $fileQuery->bind_result($picFile);
-    $fileQuery->fetch();
+    $result = $fileQuery->get_result();
+    $picFile = $result->fetch_assoc();
 
     // Cerrar la consulta preparada
     $fileQuery->close();

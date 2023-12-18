@@ -4,7 +4,7 @@ $testua="";
 if (isset($_GET['keyword']) && $_GET['keyword'] != '') {
     $testua = $_GET['keyword'];
 }
-$search = "'%" . $testua . "%'";
+$search = "%" . $testua . "%";
 
 
 $stmt = $conx->prepare("SELECT * FROM produktuak WHERE izena LIKE ? OR deskripzioa LIKE ?");
