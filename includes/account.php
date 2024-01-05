@@ -10,7 +10,8 @@ if(isset($_GET['changepass'])){
     header("Location: ".$_SERVER['PHP_SELF']."?action=account");
   }else{
     $oldpass = $_SESSION['password'];
-    $newpass = md5($_POST['newpass']);
+    // $newpass = md5($_POST['newpass']);
+    $newpass = password_hash($_POST['newpass'], PASSWORD_DEFAULT);
     $stmt = $conx->prepare('UPDATE users SET password=? WHERE password=?');
     $stmt->bind_param("ss", $newpass,  $oldpass);
     $stmt->execute();

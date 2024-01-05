@@ -5,19 +5,23 @@ if(isset($_SESSION['admin']) && ($_SESSION['admin']==1)){
 
   echo "<div align=center><h5>You are already logged in</h5></div>";
 
-}
-else{
+}else{
     if(isset($_POST['submit'])){
         
         $stmt = $conx->prepare("SELECT * FROM users WHERE username=? AND password=?");
-        $passw = md5($_POST['password']);
+        // $passw = md5($_POST['password']);
+        $passw = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $stmt->bind_param("ss", $_POST['username'], $passw);
         $stmt->execute();
+        
         $result = $stmt->get_result();
         $creds = $result->fetch_assoc();
         $stmt->close();
 
-        if($creds){
+        
+
+        // if($creds){
+          if($creds and password_verify($_POST['password'],$creds['password'])){
             $_SESSION['username'] = $creds['username'];
             $_SESSION['password'] = $creds['password'];
             $_SESSION['admin'] = 1;
@@ -27,8 +31,7 @@ else{
             header("Location: ".$_SERVER['PHP_SELF']."?action=login");
         }
 
-    }
-    else{
+    }else{
 
   ?>
 

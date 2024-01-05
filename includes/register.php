@@ -42,7 +42,8 @@ if (isset($_POST['data'])) {
     move_uploaded_file($_FILES['imagen']['tmp_name'], $path);
     $data['imagen'] = basename($_FILES['imagen']['name']);
 
-	$pass=md5($data['password']);
+	// $pass=md5($data['password']);
+	$pass = password_hash($data['password'], PASSWORD_DEFAULT);
 
 	$stmt = $conx->prepare("INSERT INTO users(username, password, izena, abizena, hiria, lurraldea, herrialdea, postakodea, telefonoa, irudia) VALUES (?,?,?,?,?,?,?,?,?,?)");
 	$stmt->bind_param("sssssssiis", $data['email'],  $pass, $data['firstname'], $data['lastname'], $data['city'], $data['stateProv'], $data['country'], $data['postcode'], $data['telephone'], $data['imagen']);
