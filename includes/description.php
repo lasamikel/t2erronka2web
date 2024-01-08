@@ -20,10 +20,10 @@ if(isset($_GET['postdescription'])){
     $stmt->fetch();
     $stmt->close();
 
-    $deskripzioa = $_POST['deskripzioa'];
+    $deskripzioa = htmlspecialchars($_POST['deskripzioa'], ENT_QUOTES, 'UTF-8');
 
     if ($_POST['salneurria'] != '') {
-        $salneurria = $_POST['salneurria'];
+        $salneurria = htmlspecialchars($_POST['salneurria'], ENT_QUOTES, 'UTF-8');
     }
 
     $stmt = $conx->prepare("UPDATE produktuak SET deskripzioa = ?, salneurria = ? WHERE ID LIKE ?");

@@ -46,15 +46,21 @@ if(isset($_GET['upload'])){
     $uploader = $_SESSION['username'];
     move_uploaded_file($_FILES['upfile']['tmp_name'], $path);
 
+
+    $izena = htmlspecialchars($_POST['izena'], ENT_QUOTES, 'UTF-8');
+    $deskripzioa = htmlspecialchars($_POST['deskripzioa'], ENT_QUOTES, 'UTF-8');
+    $salneurria = htmlspecialchars($_POST['salneurria'], ENT_QUOTES, 'UTF-8');
+    $stock = htmlspecialchars($_POST['stock'], ENT_QUOTES, 'UTF-8');
+
     // Consulta preparada para insertar un nuevo producto
     $insertQuery = $conx->prepare("INSERT INTO produktuak (izena, deskripzioa, salneurria, pic, stock) VALUES (?, ?, ?, ?, ?)");
-    $insertQuery->bind_param("sssdi", $_POST['izena'], $_POST['deskripzioa'], $_POST['salneurria'], $_FILES['upfile']['name'], $_POST['stock']);
+    $insertQuery->bind_param("sssdi", $izena, $deskripzioa, $salneurria, $_FILES['upfile']['name'], $stock);
     $insertQuery->execute();
 
     // Cerrar la consulta preparada
     $insertQuery->close();
 
-    echo "<div align=center><h5>Produktu \"" . $_POST['izena'] . "\" txertatuta</h5></div><br>";
+    echo "<div align=center><h5>Produktu \"" . $izena . "\" txertatuta</h5></div><br>";
 }
 
 ?>

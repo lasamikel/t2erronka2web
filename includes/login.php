@@ -8,10 +8,10 @@ if(isset($_SESSION['admin']) && ($_SESSION['admin']==1)){
 }else{
     if(isset($_POST['submit'])){
         
-        $stmt = $conx->prepare("SELECT * FROM users WHERE username=? AND password=?");
+        $stmt = $conx->prepare("SELECT * FROM users WHERE username=?");
         // $passw = md5($_POST['password']);
-        $passw = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $stmt->bind_param("ss", $_POST['username'], $passw);
+        // $passw = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $stmt->bind_param("s", $_POST['username']);
         $stmt->execute();
         
         $result = $stmt->get_result();

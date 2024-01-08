@@ -11,7 +11,7 @@ if(isset($_GET['changepass'])){
   }else{
     $oldpass = $_SESSION['password'];
     // $newpass = md5($_POST['newpass']);
-    $newpass = password_hash($_POST['newpass'], PASSWORD_DEFAULT);
+    $newpass = password_hash(htmlspecialchars($_POST['newpass'], ENT_QUOTES, 'UTF-8'), PASSWORD_DEFAULT);
     $stmt = $conx->prepare('UPDATE users SET password=? WHERE password=?');
     $stmt->bind_param("ss", $newpass,  $oldpass);
     $stmt->execute();
