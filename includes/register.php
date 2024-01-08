@@ -45,6 +45,68 @@ if (isset($_POST['data'])) {
 	// $pass=md5($data['password']);
 	$pass = password_hash($data['password'], PASSWORD_DEFAULT);
 
+	//
+	$email = strip_tags($_POST['data']["email"]); 
+    if (filter_var($email, FILTER_SANITIZE_EMAIL)){
+        echo "El nombre $email es valido";
+    } else {
+        echo "El nombre $email No es valido";
+    }
+
+	$izena = strip_tags($_POST['data']["izena"]); 
+    if (preg_match('/^[a-zA-Z]+$/',$izena)){
+        echo "El nombre $izena es valido";
+    } else {
+        echo "El nombre $izena No es valido";
+    }
+
+	$abizena = strip_tags($_POST['data']["abizena"]); 
+    if (preg_match('/^[a-zA-Z]+$/', $abizena)){
+        echo "El nombre $abizena es valido";
+    } else {
+        echo "El nombre $abizena No es valido";
+    }
+
+	$hiria = strip_tags($_POST['data']["hiria"]); 
+    if (preg_match('/^[a-zA-Z]+$/', $hiria)){
+        echo "El nombre $hiria es valido";
+    } else {
+        echo "El nombre $hiria No es valido";
+    }
+
+	$lurraldea = strip_tags($_POST['data']["lurraldea"]); 
+    if (preg_match('/^[a-zA-Z]+$/', $lurraldea)){
+        echo "El nombre $lurraldea es valido";
+    } else {
+        echo "El nombre $lurraldea No es valido";
+    }
+
+	$herrialdea = strip_tags($_POST['data']["herrialdea"]); 
+    if (preg_match('/^[a-zA-Z]+$/', $herrialdea)){
+        echo "El nombre $herrialdea es valido";
+    } else {
+        echo "El nombre $herrialdea No es valido";
+    }
+
+	$postakodea = strip_tags($_POST['data']["postakodea"]); 
+    if (filter_var($postakodea, FILTER_VALIDATE_INT)){
+        echo "El nombre $postakodea es valido";
+    } else {
+        echo "El nombre $postakodea No es valido";
+    }
+
+	$telefono = strip_tags($_POST['data']["telefono"]); 
+    if (filter_var($telefono, FILTER_VALIDATE_INT)){
+        echo "El nombre $telefono es valido";
+    } else {
+        echo "El nombre $telefono No es valido";
+    }
+
+	$pasahitza = strip_tags($_POST['data']["contraseña"]);
+
+	$pasahitza_errepikatu = strip_tags($_POST['data']["repetir contraseña"]);
+
+
 	$stmt = $conx->prepare("INSERT INTO users(username, password, izena, abizena, hiria, lurraldea, herrialdea, postakodea, telefonoa, irudia) VALUES (?,?,?,?,?,?,?,?,?,?)");
 	$stmt->bind_param("sssssssiis", $data['email'],  $pass, $data['firstname'], $data['lastname'], $data['city'], $data['stateProv'], $data['country'], $data['postcode'], $data['telephone'], $data['imagen']);
 	$stmt->execute();
@@ -55,67 +117,6 @@ if (isset($_POST['data'])) {
 	} else {
 		header("Location: index.php");
 	}
-
-	$email = strip_tags($_POST["email"]); 
-    if (filter_sanitize_email($email)){
-        echo "El nombre $email es valido";
-    } else {
-        echo "El nombre $email No es valido";
-    }
-
-	$izena = strip_tags($_POST["izena"]); 
-    if (preg_match('/^[a-zA-Z]+$/',$izena)){
-        echo "El nombre $izena es valido";
-    } else {
-        echo "El nombre $izena No es valido";
-    }
-
-	$abizena = strip_tags($_POST["abizena"]); 
-    if (preg_match('/^[a-zA-Z]+$/', $abizena)){
-        echo "El nombre $abizena es valido";
-    } else {
-        echo "El nombre $abizena No es valido";
-    }
-
-	$hiria = strip_tags($_POST["hiria"]); 
-    if (preg_match('/^[a-zA-Z]+$/', $hiria)){
-        echo "El nombre $hiria es valido";
-    } else {
-        echo "El nombre $hiria No es valido";
-    }
-
-	$lurraldea = strip_tags($_POST["lurraldea"]); 
-    if (preg_match('/^[a-zA-Z]+$/', $lurraldea)){
-        echo "El nombre $lurraldea es valido";
-    } else {
-        echo "El nombre $lurraldea No es valido";
-    }
-
-	$herrialdea = strip_tags($_POST["herrialdea"]); 
-    if (preg_match('/^[a-zA-Z]+$/', $herrialdea)){
-        echo "El nombre $herrialdea es valido";
-    } else {
-        echo "El nombre $herrialdea No es valido";
-    }
-
-	$postakodea = strip_tags($_POST["postakodea"]); 
-    if (filter_var($postakodea, FILTER_VALIDATE_INT)){
-        echo "El nombre $postakodea es valido";
-    } else {
-        echo "El nombre $postakodea No es valido";
-    }
-
-	$telefono = strip_tags($_POST["telefono"]); 
-    if (filter_var($telefono, FILTER_VALIDATE_INT)){
-        echo "El nombre $telefono es valido";
-    } else {
-        echo "El nombre $telefono No es valido";
-    }
-
-	$pasahitza = strip_tags($_POST["contraseña"]);
-
-	$pasahitza_errepikatu = strip_tags($_POST["repetir contraseña"]);
-
 }
 ?>
 	<div class="content">
