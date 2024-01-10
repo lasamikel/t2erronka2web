@@ -1,9 +1,9 @@
 <?php
 
 //MySQL
-$mysql_host = "localhost";
+$mysql_host = "mysql_db";
 $mysql_user = "root";
-$mysql_pass = "";
+$mysql_pass = "root";
 $mysql_db = "bdweb";
 
 //Gallery
