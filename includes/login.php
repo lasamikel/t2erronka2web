@@ -21,19 +21,35 @@ if(isset($_SESSION['admin']) && ($_SESSION['admin']==1)){
         
 
         // if($creds){
-          if($creds and password_verify($_POST['password'],$creds['password'])){
+        if($creds and password_verify($_POST['password'],$creds['password'])){
             $_SESSION['username'] = $creds['username'];
             $_SESSION['password'] = $creds['password'];
             $_SESSION['admin'] = 1;
             header("Location: ".$_SERVER['PHP_SELF']);
         }
         else{
-            header("Location: ".$_SERVER['PHP_SELF']."?action=login");
+
+?>
+<div align=center>
+    <fieldset style=width:300;>
+    <legend><b>Login</b></legend>
+        <form action="<?php echo $_SERVER['PHP_SELF']."?action=login"; ?>" method="post">
+            <br>
+            Username/Email: <input type=text name=username><br>
+            Password: <input type=password name=password><br>
+            <br><input type=submit name="submit" value=Login><br>
+        </form>
+    </fieldset>
+  </div>
+<?php
         }
+
+        //     header("Location: ".$_SERVER['PHP_SELF']."?action=login");
+        // }
 
     }else{
 
-  ?>
+?>
 
   <div align=center>
     <fieldset style=width:300;>

@@ -104,12 +104,12 @@ if (isset($_POST['data']["submit"])) {
 			die('Error: ' . $conx->error);
 		} else {
 			header("Location: index.php");
+			exit();
 		}
 	}
 		
 
 }
-
 ?>
 	<div class="content">
 	<br/>
