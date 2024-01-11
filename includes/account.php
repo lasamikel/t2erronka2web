@@ -25,7 +25,8 @@ if(isset($_GET['changepass'])){
 elseif(isset($_GET['adduser']) && $_SESSION['username']=='admin'){
 
     $newuser = $_POST['newuser'];
-    $newuserpass = md5($_POST['newuserpass']);
+    
+    $newuserpass = password_hash(htmlspecialchars($_POST['newuserpass'], ENT_QUOTES, 'UTF-8'), PASSWORD_DEFAULT);
 
   $stmt = $conx->prepare("INSERT INTO users (username,password) VALUES (?,?)");
   $stmt->bind_param("ss", $newuser,  $newuserpass);

@@ -73,8 +73,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `izena`, `abizena`, `hiria`, `lurraldea`, `herrialdea`, `postakodea`, `telefonoa`, `irudia`) VALUES
-(1, 'admin@bdweb', '5f4dcc3b5aa765d61d8327deb882cf99', 'admin', '', 'eibar', 'gipuzkoa', 'euskal herria', 20600, 121212121, 'Soy_Admin.png'),
-(2, 'izaskun@uni.eus', '5f4dcc3b5aa765d61d8327deb882cf99', 'izaskun', 'ffff', 'ss', 'ddd', 'España', 48280, 121232343, 'usuario.jpg');
+(1, 'admin@bdweb', '$2y$10$KZHRnimtrqs1LG6hTG/z/Ou9CoK0/alGNm2H4u6aWvL...', 'admin', '', 'eibar', 'gipuzkoa', 'euskal herria', 20600, 121212121, 'Soy_Admin.png'),
+(2, 'izaskun@uni.eus', '$2y$10$KZHRnimtrqs1LG6hTG/z/Ou9CoK0/alGNm2H4u6aWvL...', 'izaskun', 'ffff', 'ss', 'ddd', 'España', 48280, 121232343, 'usuario.jpg');
 
 --
 -- Índices para tablas volcadas
